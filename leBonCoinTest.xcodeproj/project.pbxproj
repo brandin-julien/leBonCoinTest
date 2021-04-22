@@ -12,6 +12,8 @@
 		F9A74DDA263196AF00B8C2E4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9A74DD8263196AF00B8C2E4 /* Main.storyboard */; };
 		F9A74DDC263196B100B8C2E4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9A74DDB263196B100B8C2E4 /* Assets.xcassets */; };
 		F9A74DDF263196B100B8C2E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9A74DDD263196B100B8C2E4 /* LaunchScreen.storyboard */; };
+		F9A74DE82631988700B8C2E4 /* APIResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A74DE72631988700B8C2E4 /* APIResult.swift */; };
+		F9A74DEA263199DA00B8C2E4 /* APIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A74DE9263199DA00B8C2E4 /* APIHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		F9A74DDB263196B100B8C2E4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F9A74DDE263196B100B8C2E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F9A74DE0263196B100B8C2E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F9A74DE72631988700B8C2E4 /* APIResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResult.swift; sourceTree = "<group>"; };
+		F9A74DE9263199DA00B8C2E4 /* APIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				F9A74DD2263196AF00B8C2E4 /* AppDelegate.swift */,
+				F9A74DE62631986000B8C2E4 /* Modele */,
 				F9A74DD6263196AF00B8C2E4 /* ViewController.swift */,
 				F9A74DD8263196AF00B8C2E4 /* Main.storyboard */,
 				F9A74DDB263196B100B8C2E4 /* Assets.xcassets */,
@@ -62,6 +67,15 @@
 				F9A74DE0263196B100B8C2E4 /* Info.plist */,
 			);
 			path = leBonCoinTest;
+			sourceTree = "<group>";
+		};
+		F9A74DE62631986000B8C2E4 /* Modele */ = {
+			isa = PBXGroup;
+			children = (
+				F9A74DE72631988700B8C2E4 /* APIResult.swift */,
+				F9A74DE9263199DA00B8C2E4 /* APIHelper.swift */,
+			);
+			path = Modele;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,6 +149,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9A74DE82631988700B8C2E4 /* APIResult.swift in Sources */,
+				F9A74DEA263199DA00B8C2E4 /* APIHelper.swift in Sources */,
 				F9A74DD7263196AF00B8C2E4 /* ViewController.swift in Sources */,
 				F9A74DD3263196AF00B8C2E4 /* AppDelegate.swift in Sources */,
 			);

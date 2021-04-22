@@ -12,6 +12,11 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let apiHelper = APIHelper()
+        apiHelper.getCategories()
+        apiHelper.getAdverts()
+        
         // Do any additional setup after loading the view.
     }
 
