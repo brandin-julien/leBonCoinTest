@@ -41,18 +41,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func shortByDate(adverts: [advert]){
      
-        //filter urgent and not urgent
+        ///filter urgent and not urgent
         var urgentItems = adverts.filter { $0.isUrgent == true }
         var notUrgentItems = adverts.filter { $0.isUrgent == false }
 
-        //filter by date
+        ///filter by date
         urgentItems = urgentItems.sorted { $0.creationDate > $1.creationDate }
         notUrgentItems = notUrgentItems.sorted { $0.creationDate > $1.creationDate }
         
         //display correctly date for label
-        let formatter3 = DateFormatter()
-        formatter3.dateFormat = "MMM d h:mm a"
-        print(formatter3.string(from: urgentItems[0].creationDate))
+//        let formatter3 = DateFormatter()
+//        formatter3.dateFormat = "MMM d h:mm a"
+//        print(formatter3.string(from: urgentItems[0].creationDate))
         
         self.filterAdverts = urgentItems + notUrgentItems
         
@@ -61,7 +61,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewWillAppear(_ animated: Bool) {
                super.viewWillAppear(animated)
                
-//                Get main screen bounds
+///                Get main screen bounds
         let screenSize: CGRect = UIScreen.main.bounds
 
                let screenWidth = screenSize.width
@@ -73,7 +73,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 
             
         
-        myTableView.register(UITableViewCell.self, forCellReuseIdentifier: "myCell")
+        myTableView.register(AdvertTableViewCell.self, forCellReuseIdentifier: "advertCell")
                
         view.addSubview(myTableView)
         myTableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
@@ -92,10 +92,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
            {
             
-            let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath)
-               
-            cell.textLabel?.text = self.filterAdverts[indexPath.row].title
-               
+            let cell: AdvertTableViewCell = tableView.dequeueReusableCell(withIdentifier: "advertCell", for: indexPath) as! AdvertTableViewCell
+            cell.advert = self.filterAdverts[indexPath.row]
                return cell
            }
            
@@ -104,6 +102,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             
 //               print("User selected table row \(indexPath.row) and item \(filterAdverts[indexPath.row])")
            }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        return 160
+    }
            
 
         
