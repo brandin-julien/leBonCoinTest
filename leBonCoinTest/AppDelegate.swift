@@ -20,8 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         // Create a view controller
         let viewController = ViewController()
+        let navigationController = UINavigationController(rootViewController: viewController)
         // Assign the view controller as `window`'s root view controller
-        window?.rootViewController = viewController
+        window?.rootViewController = navigationController
         // Show the window
         window?.makeKeyAndVisible()
         

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F9878CAA26335E7500A5DB2A /* AdvertTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9878CA926335E7500A5DB2A /* AdvertTableViewCell.swift */; };
+		F9878CAC26339EE000A5DB2A /* AdvertDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9878CAB26339EE000A5DB2A /* AdvertDetailViewController.swift */; };
 		F9A74DD3263196AF00B8C2E4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A74DD2263196AF00B8C2E4 /* AppDelegate.swift */; };
 		F9A74DD7263196AF00B8C2E4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A74DD6263196AF00B8C2E4 /* ViewController.swift */; };
 		F9A74DDA263196AF00B8C2E4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9A74DD8263196AF00B8C2E4 /* Main.storyboard */; };
@@ -19,6 +20,7 @@
 
 /* Begin PBXFileReference section */
 		F9878CA926335E7500A5DB2A /* AdvertTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertTableViewCell.swift; sourceTree = "<group>"; };
+		F9878CAB26339EE000A5DB2A /* AdvertDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertDetailViewController.swift; sourceTree = "<group>"; };
 		F9A74DCF263196AF00B8C2E4 /* leBonCoinTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = leBonCoinTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9A74DD2263196AF00B8C2E4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F9A74DD6263196AF00B8C2E4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -45,6 +47,7 @@
 			isa = PBXGroup;
 			children = (
 				F9878CA926335E7500A5DB2A /* AdvertTableViewCell.swift */,
+				F9878CAB26339EE000A5DB2A /* AdvertDetailViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -162,6 +165,7 @@
 			files = (
 				F9878CAA26335E7500A5DB2A /* AdvertTableViewCell.swift in Sources */,
 				F9A74DE82631988700B8C2E4 /* APIResult.swift in Sources */,
+				F9878CAC26339EE000A5DB2A /* AdvertDetailViewController.swift in Sources */,
 				F9A74DEA263199DA00B8C2E4 /* APIHelper.swift in Sources */,
 				F9A74DD7263196AF00B8C2E4 /* ViewController.swift in Sources */,
 				F9A74DD3263196AF00B8C2E4 /* AppDelegate.swift in Sources */,

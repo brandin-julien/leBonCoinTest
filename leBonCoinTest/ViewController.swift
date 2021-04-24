@@ -99,6 +99,22 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
            
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
            {
+            print("selected \(indexPath.row) item")
+            guard let navigationController = self.navigationController else {return}
+            
+            print("guard let passed")
+            print(filterAdverts[indexPath.row])
+            
+            let advertDetailViewController = AdvertDetailViewController()
+            advertDetailViewController.advert = self.filterAdverts[indexPath.row]
+            
+            navigationController.pushViewController(advertDetailViewController, animated: true)
+            
+            
+            
+            
+            //let advertDetailViewController = advertDetailViewController()
+            //navigationController.pushViewController(advertDetailViewController, animated: true)
             
 //               print("User selected table row \(indexPath.row) and item \(filterAdverts[indexPath.row])")
            }

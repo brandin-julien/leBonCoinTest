@@ -80,7 +80,9 @@ class AdvertTableViewCell: UITableViewCell {
         
         guard let advert = self.advert else{return}
         
-        load(url: advert.imagesUrl.small!)
+        if let url = advert.imagesUrl.small {
+            load(url: url)
+        }
         titleLabel.text = "\(advert.title)"
         priceLabel.text = "\(advert.price) €"
 
