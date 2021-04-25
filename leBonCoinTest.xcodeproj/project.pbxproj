@@ -71,8 +71,8 @@
 		F9A74DD1263196AF00B8C2E4 /* leBonCoinTest */ = {
 			isa = PBXGroup;
 			children = (
-				F9878CA826335E4D00A5DB2A /* Controller */,
 				F9A74DD2263196AF00B8C2E4 /* AppDelegate.swift */,
+				F9878CA826335E4D00A5DB2A /* Controller */,
 				F9A74DE62631986000B8C2E4 /* Modele */,
 				F9A74DD6263196AF00B8C2E4 /* ViewController.swift */,
 				F9A74DD8263196AF00B8C2E4 /* Main.storyboard */,

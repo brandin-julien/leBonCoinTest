@@ -12,6 +12,9 @@ import UIKit
 class AdvertTableViewCell: UITableViewCell {
     
     static let imageSize : CGSize = CGSize(width: 150, height: 150)
+    static let urgentLabelSize : CGSize = CGSize(width: 60, height: 30)
+    static let basicLabelSize : CGSize = CGSize(width: 60, height: 20)
+    static let titleLabelSize : CGSize = CGSize(width: 60, height: 40)
 
     let cellView: UIView = {
         let view = UIView()
@@ -65,6 +68,22 @@ class AdvertTableViewCell: UITableViewCell {
         return label
     }()
     
+    let urgentLabel: UILabel = {
+        let label = UILabel()
+        label.text = "URGENT"
+        label.font = UIFont.systemFont(ofSize: 10)
+        label.textAlignment = .center
+        label.textColor = .orange
+        label.backgroundColor = .white
+        label.layer.cornerRadius = 10
+        label.clipsToBounds = true
+        label.layer.borderWidth = 2
+        label.layer.borderColor = UIColor.orange.cgColor
+        //label.adjustsFontForContentSizeCategory = true
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     public var advert: advert? {
          didSet {
              self.configCell()
@@ -90,6 +109,8 @@ class AdvertTableViewCell: UITableViewCell {
         formatter.dateFormat = "MMM d h:mm a"
         let dateFormated = formatter.string(from: advert.creationDate)
         dateLabel.text = "\(dateFormated)"
+        
+        urgentLabel.isHidden = !advert.isUrgent
 
     }
     
@@ -133,14 +154,14 @@ class AdvertTableViewCell: UITableViewCell {
         self.titleLabel.topAnchor.constraint(equalTo: self.descriptionView.topAnchor, constant: 5).isActive = true
         self.titleLabel.leftAnchor.constraint(equalTo: self.descriptionView.leftAnchor, constant: 5).isActive = true
         self.titleLabel.rightAnchor.constraint(equalTo: self.descriptionView.rightAnchor, constant: -15).isActive = true
-        self.titleLabel.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        self.titleLabel.heightAnchor.constraint(equalToConstant: AdvertTableViewCell.titleLabelSize.height).isActive = true
 
         ///priceLabel constraint
         self.addSubview(priceLabel)
         self.priceLabel.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: 5).isActive = true
         self.priceLabel.leftAnchor.constraint(equalTo: self.descriptionView.leftAnchor, constant: 5).isActive = true
         self.priceLabel.rightAnchor.constraint(equalTo: self.descriptionView.rightAnchor, constant: 5).isActive = true
-        self.priceLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        self.priceLabel.heightAnchor.constraint(equalToConstant: AdvertTableViewCell.basicLabelSize.height).isActive = true
         
         
         ///dateLabel constraint
@@ -148,8 +169,15 @@ class AdvertTableViewCell: UITableViewCell {
         self.dateLabel.bottomAnchor.constraint(equalTo: self.descriptionView.bottomAnchor, constant: -5).isActive = true
         self.dateLabel.leftAnchor.constraint(equalTo: self.descriptionView.leftAnchor, constant: 5).isActive = true
         self.dateLabel.rightAnchor.constraint(equalTo: self.descriptionView.rightAnchor, constant: 5).isActive = true
-        self.dateLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        self.dateLabel.heightAnchor.constraint(equalToConstant: AdvertTableViewCell.basicLabelSize.height).isActive = true
         
+        ///urgentLabel
+        
+        self.addSubview(urgentLabel)
+        self.urgentLabel.topAnchor.constraint(equalTo: self.cellView.topAnchor, constant: 10).isActive = true
+        self.urgentLabel.leftAnchor.constraint(equalTo: self.cellView.leftAnchor, constant: 10).isActive = true
+        self.urgentLabel.heightAnchor.constraint(equalToConstant: AdvertTableViewCell.urgentLabelSize.height).isActive = true
+        self.urgentLabel.widthAnchor.constraint(equalToConstant: AdvertTableViewCell.urgentLabelSize.width).isActive = true
 
         
 

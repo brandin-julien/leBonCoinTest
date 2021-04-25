@@ -49,11 +49,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         urgentItems = urgentItems.sorted { $0.creationDate > $1.creationDate }
         notUrgentItems = notUrgentItems.sorted { $0.creationDate > $1.creationDate }
         
-        //display correctly date for label
-//        let formatter3 = DateFormatter()
-//        formatter3.dateFormat = "MMM d h:mm a"
-//        print(formatter3.string(from: urgentItems[0].creationDate))
-        
         self.filterAdverts = urgentItems + notUrgentItems
         
     }
@@ -72,7 +67,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                myTableView.delegate = self
                 
             
-        
+//        myTableView.register(UITableViewCell.self, forCellReuseIdentifier: "")
         myTableView.register(AdvertTableViewCell.self, forCellReuseIdentifier: "advertCell")
                
         view.addSubview(myTableView)
