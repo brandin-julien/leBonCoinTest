@@ -19,6 +19,7 @@ class AdvertTableViewCell: UITableViewCell {
     let cellView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
+        view.backgroundColor = .systemPink
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()

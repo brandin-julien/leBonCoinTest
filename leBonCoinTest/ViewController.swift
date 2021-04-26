@@ -9,8 +9,24 @@
 import UIKit
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
-    var myTableView: UITableView  = UITableView()
+    
+    var advertTableView: UITableView = {
+       let tableView = UITableView()
+        return tableView
+    }()
+    
+    var advertSearchBar: UISearchBar = {
+       let searchBar = UISearchBar()
+        return searchBar
+    }()
+    
+    var advertSearchControler: UISearchController = {
+       let searchBar = UISearchController(searchResultsController: nil)
+        return searchBar
+    }()
+    
+    var categories: [category] = []
+    
     var filterAdverts: [advert] = []
 
     override func viewDidLoad() {
@@ -27,8 +43,25 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             if result != nil {
                 DispatchQueue.main.async {
                     self.shortByDate(adverts: result!)
+                    print("number of adverts: \(result?.count)")
                     print(result![0])
-                    self.myTableView.reloadData()
+                    self.advertTableView.reloadData()
+                }
+                
+            }
+        }
+
+        apiHelper.getCategories { (result, error) in
+            
+            if error != nil {
+                print(error)
+            }
+            
+            if result != nil {
+                print("result for categories")
+                DispatchQueue.main.async {
+                    print("number of categories: \(result?.count)")
+                    self.categories = result ?? []
                 }
                 
             }
@@ -54,43 +87,70 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
         
     override func viewWillAppear(_ animated: Bool) {
-               super.viewWillAppear(animated)
-               
-///                Get main screen bounds
+        super.viewWillAppear(animated)
+        
+        if let navigationController = navigationController{
+            navigationController.isNavigationBarHidden = false
+        }
+        
+        ///Get main screen bounds
         let screenSize: CGRect = UIScreen.main.bounds
 
-               let screenWidth = screenSize.width
-               let screenHeight = screenSize.height
+        let screenWidth = screenSize.width
+        let screenHeight = screenSize.height
         
-            myTableView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight);
-               myTableView.dataSource = self
-               myTableView.delegate = self
-                
+        advertTableView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight);
+        advertTableView.dataSource = self
+        advertTableView.delegate = self
+        
+        advertSearchControler.searchResultsUpdater = self
+        advertSearchControler.obscuresBackgroundDuringPresentation = false
+        advertSearchControler.searchBar.placeholder = "Rechercher"
+        navigationItem.searchController = advertSearchControler
+        definesPresentationContext = true
             
-//        myTableView.register(UITableViewCell.self, forCellReuseIdentifier: "")
-        myTableView.register(AdvertTableViewCell.self, forCellReuseIdentifier: "advertCell")
-               
-        view.addSubview(myTableView)
-        myTableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        myTableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        myTableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        myTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        advertTableView.register(AdvertTableViewCell.self, forCellReuseIdentifier: "advertCell")
+        advertTableView.register(CategoryTableViewCell.self, forCellReuseIdentifier: "categoryCell")
+
+        view.addSubview(advertTableView)
+        advertTableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        advertTableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        advertTableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        advertTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         
         }
-           
-           
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+           return 2
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
            {
+           if section == 0{
+                return 1
+            }
             return filterAdverts.count
            }
            
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
            {
             
-            let cell: AdvertTableViewCell = tableView.dequeueReusableCell(withIdentifier: "advertCell", for: indexPath) as! AdvertTableViewCell
-            cell.advert = self.filterAdverts[indexPath.row]
-               return cell
-           }
+           if indexPath.section == 0{
+//                let cell = UITableViewCell()
+//                cell.backgroundColor = .yellow
+//                return cell
+                let cell: CategoryTableViewCell = tableView.dequeueReusableCell(withIdentifier: "categoryCell", for: indexPath) as! CategoryTableViewCell
+                cell.backgroundColor = .purple
+                cell.categories = self.categories
+                return cell
+                
+            }else if indexPath.section == 1{
+                let cell: AdvertTableViewCell = tableView.dequeueReusableCell(withIdentifier: "advertCell", for: indexPath) as! AdvertTableViewCell
+                    cell.advert = self.filterAdverts[indexPath.row]
+                return cell
+            }
+           return UITableViewCell()
+    }
            
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
            {
@@ -118,9 +178,40 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         return 160
     }
-           
+}
 
-        
-
-
+extension ViewController: UISearchResultsUpdating, UISearchControllerDelegate{
+    
+    
+    func updateSearchResults(for searchController: UISearchController) {
+      // TODO
+        let searchBar = searchController.searchBar
+        filterContentForSearchText(searchBar.text!)
+    }
+    
+    var isSearchBarEmpty: Bool {
+        print("isSearchBarEmpty \(advertSearchControler.searchBar.text?.isEmpty ?? true)")
+        return advertSearchControler.searchBar.text?.isEmpty ?? true
+    }
+    
+    /*
+     DEBUG THIS
+     */
+     
+    func filterContentForSearchText(_ searchText: String) {
+        print("searchTExt : \(searchText)")
+        let searchAdvert = self.filterAdverts.filter { (advert: advert) -> Bool in
+            return advert.title.lowercased().contains(searchText.lowercased())
+        }
+        self.advertTableView.reloadData()
+    }
+    
+    func didPresentSearchController(_ searchController: UISearchController) {
+        print("seelct")
+    }
+    
+    func didDismissSearchController(_ searchController: UISearchController) {
+        print("dismiss")
+    }
+    
 }
