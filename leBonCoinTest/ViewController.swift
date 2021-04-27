@@ -62,12 +62,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 DispatchQueue.main.async {
                     print("number of categories: \(result?.count)")
                     self.categories = result ?? []
+                    self.advertTableView.reloadData()
                 }
                 
             }
         }
         
-        view.backgroundColor = .red
+        //view.backgroundColor = .red
         
         // Do any additional setup after loading the view.
     }
@@ -135,12 +136,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
            {
             
-           if indexPath.section == 0{
+           if indexPath.section == 0 {
 //                let cell = UITableViewCell()
 //                cell.backgroundColor = .yellow
-//                return cell
                 let cell: CategoryTableViewCell = tableView.dequeueReusableCell(withIdentifier: "categoryCell", for: indexPath) as! CategoryTableViewCell
-                cell.backgroundColor = .purple
+                //cell.backgroundColor = .purple
                 cell.categories = self.categories
                 return cell
                 
@@ -176,6 +176,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
+        if indexPath.section == 0 {
+            return 105
+        }
         return 160
     }
 }
