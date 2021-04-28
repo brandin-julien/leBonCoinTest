@@ -19,7 +19,6 @@ class AdvertTableViewCell: UITableViewCell {
     let cellView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
-        view.backgroundColor = .systemPink
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -179,13 +178,6 @@ class AdvertTableViewCell: UITableViewCell {
         self.urgentLabel.leftAnchor.constraint(equalTo: self.cellView.leftAnchor, constant: 10).isActive = true
         self.urgentLabel.heightAnchor.constraint(equalToConstant: AdvertTableViewCell.urgentLabelSize.height).isActive = true
         self.urgentLabel.widthAnchor.constraint(equalToConstant: AdvertTableViewCell.urgentLabelSize.width).isActive = true
-
-        
-
-        
     }
-    
-    
-    
-    
+ 
 }

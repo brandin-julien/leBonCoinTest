@@ -12,7 +12,6 @@ class categoryCollectionViewCell: UICollectionViewCell {
     
     let cellView: UIView = {
         let view = UIView()
-        //view.backgroundColor = .red
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -28,7 +27,6 @@ class categoryCollectionViewCell: UICollectionViewCell {
         label.clipsToBounds = true
         label.layer.borderWidth = 2
         label.layer.borderColor = UIColor.orange.cgColor
-        //label.adjustsFontForContentSizeCategory = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -69,12 +67,11 @@ class categoryCollectionViewCell: UICollectionViewCell {
         
         ///nameLAbel constraint
         self.addSubview(nameLabel)
-        self.nameLabel.topAnchor.constraint(equalTo: self.cellView.topAnchor, constant: 0).isActive = true
-        self.nameLabel.leftAnchor.constraint(equalTo: self.cellView.leftAnchor, constant: 0).isActive = true
+        self.nameLabel.topAnchor.constraint(equalTo: self.cellView.topAnchor, constant: 5).isActive = true
+        self.nameLabel.leftAnchor.constraint(equalTo: self.cellView.leftAnchor, constant: 5).isActive = true
         self.nameLabel.bottomAnchor.constraint(equalTo: self.cellView.bottomAnchor, constant: 0).isActive = true
         self.nameLabel.rightAnchor.constraint(equalTo: self.cellView.rightAnchor, constant: 0).isActive = true
         
     }
-    
     
 }

@@ -143,18 +143,14 @@ class AdvertDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("change view controller")
-        // Do any additional setup after loading the view.
     }
     
     /// dismiss view detail
     @objc func backAction(){
-        print("click back button")
        self.navigationController?.popViewController(animated: true)
     }
     
     func config(){
-        print("==========")
         setUpView()
         setUpValue()
     }
@@ -212,7 +208,6 @@ class AdvertDetailViewController: UIViewController {
         ///advertImageView constraint
         self.view.addSubview(advertImageView)
         self.advertImageView.heightAnchor.constraint(equalToConstant: AdvertDetailViewController.imageSize.height).isActive = true
-        //self.advertImageView.widthAnchor.constraint(equalToConstant: AdvertTableViewCell.imageSize.width).isActive = true
         self.advertImageView.topAnchor.constraint(equalTo: self.contantView.topAnchor, constant: 0).isActive = true
         self.advertImageView.rightAnchor.constraint(equalTo: self.contantView.rightAnchor, constant: 0).isActive = true
         self.advertImageView.leftAnchor.constraint(equalTo: self.contantView.leftAnchor, constant: 0).isActive = true
@@ -229,7 +224,6 @@ class AdvertDetailViewController: UIViewController {
         self.titleLabel.topAnchor.constraint(equalTo: self.descriptionView.topAnchor, constant: 5).isActive = true
         self.titleLabel.leftAnchor.constraint(equalTo: self.descriptionView.leftAnchor, constant: 20).isActive = true
         self.titleLabel.rightAnchor.constraint(equalTo: self.descriptionView.rightAnchor, constant: -20).isActive = true
-//        self.titleLabel.heightAnchor.constraint(equalToConstant: 40).isActive = true
 
         ///priceLabel constraint
         self.view.addSubview(priceLabel)
@@ -257,8 +251,6 @@ class AdvertDetailViewController: UIViewController {
         self.descLabel.topAnchor.constraint(equalTo: self.line.bottomAnchor, constant: 10).isActive = true
         self.descLabel.rightAnchor.constraint(equalTo: self.descriptionView.rightAnchor, constant: -10).isActive = true
         self.descLabel.leftAnchor.constraint(equalTo: self.descriptionView.leftAnchor, constant: 10).isActive = true
-        //self.line.heightAnchor.constraint(equalToConstant: 1).isActive = true
-        
         
         ///buyButton constraint
         self.view.addSubview(buyButton)
@@ -269,21 +261,12 @@ class AdvertDetailViewController: UIViewController {
 
         ///descriptionLabel constraint
         self.view.addSubview(descriptionLabel)
-       // self.descriptionLabel.bottomAnchor.constraint(equalTo: self.buyButton.topAnchor, constant: 5).isActive = true
         self.descriptionLabel.leftAnchor.constraint(equalTo: self.descriptionView.leftAnchor, constant: 20).isActive = true
         self.descriptionLabel.rightAnchor.constraint(equalTo: self.descriptionView.rightAnchor, constant: -20).isActive = true
         self.descriptionLabel.topAnchor.constraint(equalTo: self.descLabel.bottomAnchor, constant: 10).isActive = true
-        //self.descriptionLabel.heightAnchor.constraint(equalToConstant: AdvertDetailViewController.descriptionLabelSize.height).isActive = true
-
+        
         ///siretLabel constraint
         self.view.addSubview(siretLabel)
-        /*
-        self.siretLabel.topAnchor.constraint(equalTo: self.priceLabel.bottomAnchor, constant: 5).isActive = true
-        self.siretLabel.leftAnchor.constraint(equalTo: self.dateLabel.leftAnchor, constant: 10).isActive = true
-        self.siretLabel.rightAnchor.constraint(equalTo: self.descriptionView.rightAnchor, constant: -20).isActive = true
-        self.siretLabel.heightAnchor.constraint(equalToConstant: AdvertDetailViewController.basicLabelSize.height).isActive = true
-        */
-        
         self.siretLabel.topAnchor.constraint(equalTo: self.descriptionLabel.bottomAnchor, constant: 15).isActive = true
         self.siretLabel.leftAnchor.constraint(equalTo: self.descriptionView.leftAnchor, constant: 20).isActive = true
         self.siretLabel.rightAnchor.constraint(equalTo: self.descriptionView.rightAnchor, constant: -20).isActive = true
@@ -299,21 +282,9 @@ class AdvertDetailViewController: UIViewController {
         ///urgenceImageView constant
         self.view.addSubview(urgenceImageView)
         self.urgenceImageView.topAnchor.constraint(equalTo: self.priceLabel.bottomAnchor, constant: 0).isActive = true
-        //self.urgenceImageView.leftAnchor.constraint(equalTo: self.dateLabel.leftAnchor, constant: 5).isActive = true
         self.urgenceImageView.rightAnchor.constraint(equalTo: self.descriptionView.rightAnchor, constant: -25).isActive = true
         self.urgenceImageView.heightAnchor.constraint(equalToConstant: AdvertDetailViewController.urgenceImageSize.height).isActive = true
         self.urgenceImageView.widthAnchor.constraint(equalToConstant: AdvertDetailViewController.urgenceImageSize.width).isActive = true
 
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
