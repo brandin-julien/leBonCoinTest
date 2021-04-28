@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F911B5982638A4D8000F405C /* categorySearchProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F911B5972638A4D8000F405C /* categorySearchProtocol.swift */; };
 		F9878CAA26335E7500A5DB2A /* AdvertTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9878CA926335E7500A5DB2A /* AdvertTableViewCell.swift */; };
 		F9878CAC26339EE000A5DB2A /* AdvertDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9878CAB26339EE000A5DB2A /* AdvertDetailViewController.swift */; };
 		F9878CAE2636EEE700A5DB2A /* CategoryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9878CAD2636EEE700A5DB2A /* CategoryCollectionViewController.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F911B5972638A4D8000F405C /* categorySearchProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = categorySearchProtocol.swift; sourceTree = "<group>"; };
 		F9878CA926335E7500A5DB2A /* AdvertTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertTableViewCell.swift; sourceTree = "<group>"; };
 		F9878CAB26339EE000A5DB2A /* AdvertDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertDetailViewController.swift; sourceTree = "<group>"; };
 		F9878CAD2636EEE700A5DB2A /* CategoryCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewController.swift; sourceTree = "<group>"; };
@@ -57,6 +59,7 @@
 				F9878CAD2636EEE700A5DB2A /* CategoryCollectionViewController.swift */,
 				F9878CAF2636F50C00A5DB2A /* CategoryTableViewCell.swift */,
 				F9878CB12637494F00A5DB2A /* categoryCollectionViewCell.swift */,
+				F911B5972638A4D8000F405C /* categorySearchProtocol.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -177,6 +180,7 @@
 				F9A74DE82631988700B8C2E4 /* APIResult.swift in Sources */,
 				F9878CAC26339EE000A5DB2A /* AdvertDetailViewController.swift in Sources */,
 				F9A74DEA263199DA00B8C2E4 /* APIHelper.swift in Sources */,
+				F911B5982638A4D8000F405C /* categorySearchProtocol.swift in Sources */,
 				F9A74DD7263196AF00B8C2E4 /* ViewController.swift in Sources */,
 				F9A74DD3263196AF00B8C2E4 /* AppDelegate.swift in Sources */,
 				F9878CAE2636EEE700A5DB2A /* CategoryCollectionViewController.swift in Sources */,

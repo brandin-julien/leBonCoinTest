@@ -26,9 +26,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }()
     
     var categories: [category] = []
-    
+    var adverts: [advert] = []
     var filterAdverts: [advert] = []
-
+    var selectedCategory: category?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -45,7 +46,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                     self.shortByDate(adverts: result!)
                     print("number of adverts: \(result?.count)")
                     print(result![0])
-                    self.advertTableView.reloadData()
+                    //self.advertTableView.reloadData()
                 }
                 
             }
@@ -67,15 +68,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 
             }
         }
-        
-        //view.backgroundColor = .red
-        
+                
         // Do any additional setup after loading the view.
     }
     
     func shortByDate(adverts: [advert]){
      
+//        if self.adverts
+        
         ///filter urgent and not urgent
+        print("=========")
+        print(adverts.count)
+        print("=========")
         var urgentItems = adverts.filter { $0.isUrgent == true }
         var notUrgentItems = adverts.filter { $0.isUrgent == false }
 
@@ -84,8 +88,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         notUrgentItems = notUrgentItems.sorted { $0.creationDate > $1.creationDate }
         
         self.filterAdverts = urgentItems + notUrgentItems
+        self.adverts = filterAdverts
+        self.advertTableView.reloadData()
         
     }
+    
+    func setUpValue(){
+        shortByDate(adverts: adverts)
+        self.advertTableView.reloadData()
+    }
+    
         
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -121,29 +133,35 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         }
     
+    func advertsForCategorySelected(category: category){
+        let advertsForCategory = self.adverts.filter( { $0.categoryId == category.id} )
+        print(advertsForCategory.count)
+        self.filterAdverts = advertsForCategory
+        let section = IndexSet(integer: 1)
+        self.advertTableView.reloadSections(section, with: .none)
+//        self.advertTableView.reloadData()
+        
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
            return 2
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-           {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
            if section == 0{
                 return 1
             }
             return filterAdverts.count
            }
            
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
-           {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             
            if indexPath.section == 0 {
-//                let cell = UITableViewCell()
-//                cell.backgroundColor = .yellow
                 let cell: CategoryTableViewCell = tableView.dequeueReusableCell(withIdentifier: "categoryCell", for: indexPath) as! CategoryTableViewCell
-                //cell.backgroundColor = .purple
                 cell.categories = self.categories
+                cell.categorySelected = selectedCategory
+                cell.categorySearchProtocol = self
                 return cell
-                
             }else if indexPath.section == 1{
                 let cell: AdvertTableViewCell = tableView.dequeueReusableCell(withIdentifier: "advertCell", for: indexPath) as! AdvertTableViewCell
                     cell.advert = self.filterAdverts[indexPath.row]
@@ -152,8 +170,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
            return UITableViewCell()
     }
            
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
-           {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             print("selected \(indexPath.row) item")
             guard let navigationController = self.navigationController else {return}
             
@@ -164,14 +181,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             advertDetailViewController.advert = self.filterAdverts[indexPath.row]
             
             navigationController.pushViewController(advertDetailViewController, animated: true)
-            
-            
-            
-            
-            //let advertDetailViewController = advertDetailViewController()
-            //navigationController.pushViewController(advertDetailViewController, animated: true)
-            
-//               print("User selected table row \(indexPath.row) and item \(filterAdverts[indexPath.row])")
            }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -179,7 +188,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if indexPath.section == 0 {
             return 105
         }
-        return 160
+        return 170
     }
 }
 
@@ -206,15 +215,32 @@ extension ViewController: UISearchResultsUpdating, UISearchControllerDelegate{
         let searchAdvert = self.filterAdverts.filter { (advert: advert) -> Bool in
             return advert.title.lowercased().contains(searchText.lowercased())
         }
-        self.advertTableView.reloadData()
+        //self.advertTableView.reloadData()
     }
     
     func didPresentSearchController(_ searchController: UISearchController) {
-        print("seelct")
+        print("present")
     }
     
     func didDismissSearchController(_ searchController: UISearchController) {
         print("dismiss")
     }
+    
+}
+
+extension ViewController: categorySearchProtocol {
+    func selectCategory(category: category) {
+        print("selected category : \(category.name)")
+        self.advertsForCategorySelected(category: category)
+    }
+    
+    func deselectCategory(category: category) {
+        print("deselected category : \(category.name)")
+        self.filterAdverts = self.adverts
+        let section = IndexSet(integer: 1)
+        self.advertTableView.reloadSections(section, with: .none)
+//        self.advertTableView.reloadData()
+    }
+    
     
 }

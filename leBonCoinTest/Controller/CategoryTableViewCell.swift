@@ -10,6 +10,9 @@ import UIKit
 
 class CategoryTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
 
+    var categorySearchProtocol: categorySearchProtocol? = nil
+    var categorySelected: category?
+    
     let cellView: UIView = {
         let view = UIView()
         //view.backgroundColor = .yellow
@@ -58,7 +61,7 @@ class CategoryTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollec
 
 //        self.categoryCollectionView.register(categoryCollectionViewCell.self, forCellWithReuseIdentifier: "categoryCell")
         self.categoryCollectionView.register(categoryCollectionViewCell.self, forCellWithReuseIdentifier: "categoryCell")
-        
+        categoryCollectionView.allowsSelection = true
         
         self.categoryCollectionView.translatesAutoresizingMaskIntoConstraints = false
         self.categoryCollectionView.collectionViewLayout = flowLayout
@@ -102,9 +105,9 @@ class CategoryTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollec
 //    }
 
     
-//    func numberOfSections(in collectionView: UICollectionView) -> Int {
-//        return 1
-//    }
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.categories?.count ?? 0
@@ -114,7 +117,12 @@ class CategoryTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollec
 
 //        let cell: categoryCollectionViewCell = collectionView.cellForItem(at: indexPath) as! categoryCollectionViewCell
         let cell: categoryCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as! categoryCollectionViewCell
-        cell.config()
+        cell.category = self.categories?[indexPath.row]
+
+//        if categories?[indexPath.row].id == categorySelected?.id {
+//            cell.nameLabel.backgroundColor = .orange
+//        }
+        
         return cell
 
 //        let cell = UICollectionViewCell()
@@ -128,6 +136,40 @@ class CategoryTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollec
         return UICollectionViewCell()
 
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        guard let category = categories?[indexPath.row] else { return }
+        print(category)
+        print("didSelectItemAt")
+        self.categorySearchProtocol?.selectCategory(category: category)
+        textLabel?.backgroundColor = .orange
+        
+        print(categorySelected)
+                
+        if let categoryIdSelected = categorySelected?.id {
+            print("categoryIdSelected = categorySelected?.id")
+            if category.id == categoryIdSelected {
+                print("enter en if category.id == categoryIdSelected ")
+                self.categorySelected = nil
+                self.categoryCollectionView.deselectItem(at: indexPath, animated: true)
+                self.categorySearchProtocol?.deselectCategory(category: category)
+            }
+        }
+//        self.isSelected = true
+        self.categorySelected = category
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        print("didDeselectItemAt")
+        print(self.categories?[indexPath.row])
+        guard let category = self.categories?[indexPath.row] else { return }
+        print(category)
+        print("didDeselectItemAt2")
+        self.categorySearchProtocol?.deselectCategory(category: category)
+        textLabel?.backgroundColor = .white
+    }
+    
     
 }
 
