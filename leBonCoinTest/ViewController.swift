@@ -62,7 +62,7 @@ class ViewController: UIViewController {
         apiHelper.getAdverts { (result, error) in
             
             if error != nil {
-                print("error during load of adverts : \(error)")
+                print("error during load of adverts : \(String(describing: error))")
             }
             
             if result != nil {
@@ -77,12 +77,12 @@ class ViewController: UIViewController {
         apiHelper.getCategories { (result, error) in
             
             if error != nil {
-                print(error)
+                print("error during load of categories : \(String(describing: error))")
             }
             
             if result != nil {
                 DispatchQueue.main.async {
-                    print("number of categories: \(result?.count)")
+                    print("number of categories: \(String(describing: result?.count))")
                     self.categories = result ?? []
                     self.advertTableView.reloadData()
                 }

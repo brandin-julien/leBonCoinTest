@@ -37,17 +37,15 @@ class APIHelper {
         
         guard let httpResponse = response as? HTTPURLResponse,
               (200...299).contains(httpResponse.statusCode) else {
-            print("Error with the response, unexpected status code: \(response)")
+                print("Error with the response, unexpected status code: \(String(describing: response))")
             completion?([], "Error system")
           return
         }
     
         if let data = data {
-            print(data)
             do {
                 let result = try JSONDecoder().decode([category].self, from: data)
-                print(result)
-                completion?(result, "")
+                completion?(result, nil)
 
             }catch _ {
                 print("errror during reading categories json")
@@ -65,35 +63,33 @@ class APIHelper {
       let task = URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
         if let error = error {
           print("Error with fetching adverts: \(error)")
+            completion?([], "Error of application")
           return
         }
         
         guard let httpResponse = response as? HTTPURLResponse,
               (200...299).contains(httpResponse.statusCode) else {
-          print("Error with the response, unexpected status code: \(response)")
+                print("Error with the response, unexpected status code: \(String(describing: response))")
+                completion?([], "Error of application")
           return
         }
     
         if let data = data {
-            //print(data)
             do {
                 
                 let decoder = JSONDecoder()
                 let dateFormatter = DateFormatter()
-//                dateFormatter.dateFormat = "MMM d h:mm a"
                 dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-//                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
                 dateFormatter.locale = Locale(identifier: "fr_FR")
                 dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
                 decoder.dateDecodingStrategy = .formatted(dateFormatter)
                 
                 let result = try decoder.decode([advert].self, from: data)
-                //print(result[0])
-                print("okkkk")
-                completion?(result, "")
+                completion?(result, nil)
 
             }catch _ {
                 print("errror during reading adverts json")
+                completion?([], "Error of application")
             }
         }
       })

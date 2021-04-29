@@ -128,6 +128,8 @@ class AdvertTableViewCell: UITableViewCell {
     
     func setUpView(){
         
+        self.selectionStyle = .none
+        
         ///cellView constraint
         self.addSubview(cellView)
         self.cellView.topAnchor.constraint(equalTo: self.topAnchor, constant: 5).isActive = true
@@ -166,7 +168,7 @@ class AdvertTableViewCell: UITableViewCell {
         
         ///dateLabel constraint
         self.addSubview(dateLabel)
-        self.dateLabel.bottomAnchor.constraint(equalTo: self.descriptionView.bottomAnchor, constant: -5).isActive = true
+        self.dateLabel.bottomAnchor.constraint(equalTo: self.descriptionView.bottomAnchor, constant: -10).isActive = true
         self.dateLabel.leftAnchor.constraint(equalTo: self.descriptionView.leftAnchor, constant: 5).isActive = true
         self.dateLabel.rightAnchor.constraint(equalTo: self.descriptionView.rightAnchor, constant: 5).isActive = true
         self.dateLabel.heightAnchor.constraint(equalToConstant: AdvertTableViewCell.basicLabelSize.height).isActive = true

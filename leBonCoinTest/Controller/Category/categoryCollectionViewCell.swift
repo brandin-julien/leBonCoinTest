@@ -19,7 +19,7 @@ class categoryCollectionViewCell: UICollectionViewCell {
     let nameLabel: UILabel = {
         let label = UILabel()
         label.text = "category name"        
-        label.font = UIFont.systemFont(ofSize: 10)
+        label.font = UIFont.systemFont(ofSize: 15)
         label.textAlignment = .center
         label.textColor = .orange
         label.backgroundColor = .white
